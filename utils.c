@@ -21,7 +21,7 @@ double *distanciasInt(int size){
     return dis;
 }
 
-void destruirDistanciasInt(double *dis){
+void destruirDistanciasDouble(double *dis){
     free(dis);
 }
 
