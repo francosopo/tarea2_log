@@ -25,6 +25,17 @@ void destruirDistanciasDouble(double *dis){
     free(dis);
 }
 
-int previos(){
-    //no que muy bien que va aqui :c
+double *previos(int size){
+    double *prev = calloc(size, sizeof(double));
+
+    if (prev == NULL){
+        perror("previos calloc");
+    }
+
+    return prev;
 }
+
+void destruirPrevios(double *prev){
+    free(prev);
+}
+
