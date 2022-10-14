@@ -26,5 +26,5 @@ void destruirDistanciasDouble(double *dis){
 }
 
 int previos(){
-
+    //no que muy bien que va aqui :c
 }
