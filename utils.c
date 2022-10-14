@@ -3,7 +3,7 @@
 
 typedef struct nodo{
     int peso;
-    Nodo *next;
+    struct nodo *next;
 }Nodo;
 
 double *distanciasInt(int size){
@@ -34,6 +34,8 @@ double *previos(int size){
 
     return prev;
 }
+
+
 
 void destruirPrevios(double *prev){
     free(prev);
