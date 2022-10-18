@@ -20,4 +20,4 @@ typedef struct nodoA1{
 
 int extractMinColaHeap(ColaHeap c);
 int extractMinColaFib(ColaFib c);
-int extractMinNormal(int **arr);
+int extractMinNormal(NodoA1 **arr);

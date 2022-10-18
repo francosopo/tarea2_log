@@ -4,7 +4,6 @@
 #include "utils.c"
 
 
-
 void test(int expected, int got, int ntest){
     
     if(expected != got){
