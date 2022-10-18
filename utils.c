@@ -40,7 +40,7 @@ void destruirPrevios(int *prev){
 
 void crearGrafoDeJuguete(int size, NodoA1 *arr){
     int a=1, b=2, c=3, d=4,e=5;
-    int **vecinos_a = calloc(5, sizeof(int*));
+    int **vecinos_a = calloc(size, sizeof(int*));
     for(int i = 0; i< 2; i++){
         vecinos_a[i] = calloc(2, sizeof(int));
     }
@@ -58,7 +58,7 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     arr[0].valor = a;
     arr[0].vecinos = vecinos_a;
 
-    int **vecinos_b = calloc(5, sizeof(int*));
+    int **vecinos_b = calloc(size, sizeof(int*));
     for(int i = 0; i< 2; i++){
         vecinos_b[i] = calloc(2, sizeof(int));
     } 
@@ -76,7 +76,7 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     arr[1].valor = b;
     arr[1].vecinos = vecinos_b;
 
-    int **vecinos_c = calloc(5, sizeof(int*));
+    int **vecinos_c = calloc(size, sizeof(int*));
     for(int i = 0; i< 2; i++){
         vecinos_c[i] = calloc(2, sizeof(int));
     }    
@@ -94,7 +94,7 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     arr[2].valor = c;
     arr[2].vecinos = vecinos_c;
 
-    int **vecinos_d = calloc(5, sizeof(int*));
+    int **vecinos_d = calloc(size, sizeof(int*));
     for(int i = 0; i< 2; i++){
         vecinos_d[i] = calloc(2, sizeof(int));
     } 
@@ -112,7 +112,7 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     arr[3].valor = d;
     arr[3].vecinos = vecinos_d;
     
-    int **vecinos_e = calloc(5, sizeof(int*));
+    int **vecinos_e = calloc(size, sizeof(int*));
     for(int i = 0; i< 2; i++){
         vecinos_e[i] = calloc(2, sizeof(int));
     } 
@@ -129,4 +129,13 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     vecinos_e[4][1] = 9;
     arr[4].valor = e;
     arr[4].vecinos = vecinos_e;
+}
+
+void destruirGrafoDeJuguete(NodoA1 *arr, int size){
+    for(int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++){
+            free((arr[i].vecinos)[j]);
+        }
+        free(arr[i].vecinos);
+    }
 }
