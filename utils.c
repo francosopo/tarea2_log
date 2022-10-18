@@ -3,8 +3,8 @@
 
 #include "utils.h"
 
-double *distanciasInt(int size){
-    double *dis = calloc(size, sizeof(double));
+int *distanciasInt(int size){
+    int *dis = calloc(size, sizeof(int));
 
     //debuggeando el error de calloc
     if (dis == NULL){
@@ -18,12 +18,12 @@ double *distanciasInt(int size){
     return dis;
 }
 
-void destruirDistanciasDouble(double *dis){
+void destruirDistanciasint(int *dis){
     free(dis);
 }
 
-double *previos(int size){
-    double *prev = calloc(size, sizeof(double));
+int *previos(int size){
+    int *prev = calloc(size, sizeof(int));
 
     if (prev == NULL){
         perror("previos calloc");
@@ -34,7 +34,7 @@ double *previos(int size){
 
 
 
-void destruirPrevios(double *prev){
+void destruirPrevios(int *prev){
     free(prev);
 }
 
