@@ -10,8 +10,13 @@ typedef struct nodo {
 
 typedef struct colaFib {
     int min;
-    Nodo *arr
+    Nodo *arr;
 } ColaFib;
+
+typedef struct nodoA1{
+    int valor;
+    int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
+}NodoA1;
 
 int extractMinColaHeap(ColaHeap c);
 int extractMinColaFib(ColaFib c);
