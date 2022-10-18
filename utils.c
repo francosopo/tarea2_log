@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct nodo{
-    int peso;
-    struct nodo *next;
-}Nodo;
+#include "utils.h"
 
 double *distanciasInt(int size){
     double *dis = calloc(size, sizeof(double));
