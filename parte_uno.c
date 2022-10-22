@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include "utils.c"
-
+#include "pss.h"
 
 void test(int expected, int got, int ntest){
     
@@ -12,31 +12,45 @@ void test(int expected, int got, int ntest){
         fprintf(stdout, "Test numero %i pasado\n", ntest);
     }
 }
-// Extraemos el minimo 
-int extractMin(int * arr,int len){
-    int min = arr[0];
+
+// Extraemos el indice minimo 
+int extractMinNode(int * arr_dist,int * arr_index,int len){
+    int min = arr_dist[arr_index[0]];
     int j;
-    for(int k = 0;k<len;k++){
-        if(arr[k]<=min)
-          j=k;
+    for(int k = 0;k<len ; k++){
+        if(arr_dist[arr_index[k]]<=min)
+          j=arr_index[k];
     }
     return j;
 }
+
+void eliminar_de_arreglo(int *arr, int num, int len){
+    for(int i =0; i< len-1; i++){
+        if(arr[i]==num){
+            arr[i]=arr[len-1];
+            break;
+        }
+    }
+}
+
+
 //Asumimos que nodo tiene la cantidad de nodos(vértices)
 void algoritmo1(NodoA1 *nodo, int cant_nodos){
     //inicializamos dos arreglos, que contienen las distancias y 
     //los nodos previos(?)
     int distancias[cant_nodos];
     int * previos[cant_nodos];
-
+    int * arreglo_indices[cant_nodos];
     NodoA1 aux[cant_nodos];  
-    
+    int cantidadDentrodeAux= 0;
     for(int i=0;i<cant_nodos;i++){
         //Asignamos la distancia como infinita
         distancias[i] = INT_MAX; 
         //Asignar los previos como indefinidos   
         previos[i] = NULL; 
-        aux[i] = nodo[i];
+        aux[i] = nodo[i];    
+        //Asignamos el arreglo de indices
+        arreglo_indices[i]=i;
     }
     //Asumimos que aquí está almacenado el nodo    
     distancias[0]=0;
@@ -47,8 +61,15 @@ void algoritmo1(NodoA1 *nodo, int cant_nodos){
     int contador = cant_nodos;
     int min = distancias[0];
     while(contador>0){
-        NodoA1 * temp_nod;
-        
+        NodoA1 temp_nod;
+        int distancia_minima = extractMin(distancia_minima,contador);
+        eliminar_de_arreglo(arreglo_indices,distancia_minima,contador);
+        //Consigo el tamaño del arreglo de vecinos así ya que 12 serían, 8 bytes Puntero a int y 4 bytes un int
+        int tamañoDeVecinos= sizeof(aux->vecinos)/12;
+        for(int i = 0; i<tamañoDeVecinos; i++){
+            distancias[aux->vecinos[i][0]] = aux->vecinos[i][1];
+            
+        }
         contador--;
     }    
 }
