@@ -15,10 +15,17 @@ void test(int expected, int got, int ntest){
 
 // Extraemos el indice minimo 
 int extractMinNode(int * arr_dist,int * arr_index,int len){
+<<<<<<< HEAD
     int min = arr_dist[arr_index[len-1]];
     int j = -1;
     for(int k = 0;k<len ; k++){
         if(0<arr_dist[arr_index[k]] && arr_dist[arr_index[k]]<=min)
+=======
+    int min = arr_dist[arr_index[0]];
+    int j = -1;
+    for(int k = 0;k<len ; k++){
+        if(arr_dist[arr_index[k]]<=min)
+>>>>>>> 19d62479d847bf8abee73c4bfa19cffd762ca629
           j=arr_index[k];
     }
     return j;
@@ -33,6 +40,7 @@ void eliminar_de_arreglo(int *arr, int num, int len){
     }
 }
 
+<<<<<<< HEAD
 void eliminar_de_arreglo_de_nodos(NodoA1 *arr,int num, int len){
     for(int i =0; i< len-1; i++){
         if(arr[i].valor==num){
@@ -42,6 +50,8 @@ void eliminar_de_arreglo_de_nodos(NodoA1 *arr,int num, int len){
     }
 }
 
+=======
+>>>>>>> 19d62479d847bf8abee73c4bfa19cffd762ca629
 void llenar_aux(NodoA1 *aux, int size){
 
 }
@@ -72,6 +82,7 @@ void algoritmo1(NodoA1 *nodo, int cant_nodos, int * distancias, NodoA1 * previos
     for(int i = 0; i < nodo->nVecinos ;i++){  
       distancias[(nodo->vecinos)[i][0]] = nodo->vecinos[i][1];
     }  
+<<<<<<< HEAD
     for (int j=0;j<cant_nodos;j++){
         printf("valor distancias[j]:%i\n",distancias[j]);
     }
@@ -93,6 +104,21 @@ void algoritmo1(NodoA1 *nodo, int cant_nodos, int * distancias, NodoA1 * previos
                 printf("se reemplazo %i, por el valor %i\n",distancias[temp_nod.vecinos[i][0]],temp_nod.vecinos[i][1]);
             }
             
+=======
+    int contador = cant_nodos;
+    //int min = distancias[0];
+    while(contador>=0){
+        int distancia_minima = extractMinNode(distancias,arreglo_indices,contador);
+        NodoA1 temp_nod= aux[distancia_minima];
+        eliminar_de_arreglo(arreglo_indices,distancia_minima,contador);
+        //Cosigo el tamaño del arreglo de vecinos así ya que 12 serían, 8 bytes Puntero a int y 4 bytes un int
+        int tamanoDeVecinos= sizeof(temp_nod.vecinos)/12;
+        for(int i = 0; i<tamanoDeVecinos; i++){
+            if (distancias[temp_nod.vecinos[i][0]] > temp_nod.vecinos[i][1]+distancias[distancia_minima]){
+                distancias[temp_nod.vecinos[i][0]] = temp_nod.vecinos[i][1];
+                previos[temp_nod.vecinos[i][0]] = nodo[distancia_minima];
+            }
+>>>>>>> 19d62479d847bf8abee73c4bfa19cffd762ca629
         }
         contador--;
     }
