@@ -62,7 +62,7 @@ void algoritmo1(NodoA1 *nodo, int cant_nodos, int * distancias, NodoA1 * previos
         int distancia_minima = extractMinNode(distancias,arreglo_indices,contador);
         NodoA1 temp_nod= aux[distancia_minima];
         eliminar_de_arreglo(arreglo_indices,distancia_minima,contador);
-        //Consigo el tamaño del arreglo de vecinos así ya que 12 serían, 8 bytes Puntero a int y 4 bytes un int
+        //Cosigo el tamaño del arreglo de vecinos así ya que 12 serían, 8 bytes Puntero a int y 4 bytes un int
         int tamañoDeVecinos= sizeof(temp_nod.vecinos)/12;
         for(int i = 0; i<tamañoDeVecinos; i++){
             if (distancias[temp_nod.vecinos[i][0]] > temp_nod.vecinos[i][1]+distancias[distancia_minima]){
@@ -76,21 +76,27 @@ void algoritmo1(NodoA1 *nodo, int cant_nodos, int * distancias, NodoA1 * previos
 
 int main(int argc, char *argv[]){
     int *d = distanciasInt(30);
-    int *p = previos(30);
+    NodoA1 *p = previos(30);
       
     //leer el archivo de input
     //FILE *in = fopen(argv[1], "r");
-    int a[10]={1,2,3,4,5,6,7,8,4,10};
-    test(0,extractMin(a,10),6);
-
+    int a[10]={5,8,2,9,5,8,3,1,8,9};
+    int index[10]={0,1,2,3,4,5,6,7,8,9};
+    test(7,extractMinNode(a,index,10),6);
 
     NodoA1  arr[5];
     crearGrafoDeJuguete(5,arr);
+
     test(1, arr[0].valor, 1);
     test(2, arr[1].valor, 2);
     test(3, arr[2].valor, 3);
     test(4, arr[3].valor, 4); 
     test(5, arr[4].valor, 5);
+
+    NodoA1 test[30];
+    crearGrafoDeJuguete(30,test);
+    
+    
 
     destruirGrafoDeJuguete(arr, 5);
     destruirDistanciasInt(d);
