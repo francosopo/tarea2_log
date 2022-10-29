@@ -22,19 +22,18 @@ void destruirDistanciasInt(int *dis){
     free(dis);
 }
 
-int *previos(int size){
-    int *prev = calloc(size, sizeof(int));
+NodoA1 *previos(int size){
+    NodoA1 *prev = calloc(size, sizeof(NodoA1));
 
     if (prev == NULL){
         perror("previos calloc");
     }
-
     return prev;
 }
 
 
 
-void destruirPrevios(int *prev){
+void destruirPrevios(NodoA1 *prev){
     free(prev);
 }
 
@@ -61,11 +60,10 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     vecinos_a[2][1] = 2;
     vecinos_a[3][0] = 5;
     vecinos_a[3][1] = 7;
-    vecinos_a[4][0] = 1;
-    vecinos_a[4][1] = 9;
 
     arr[0].valor = a;
     arr[0].vecinos = vecinos_a;
+    arr[0].nVecinos = 4;
 
 
 
@@ -88,14 +86,12 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     vecinos_b[1][1] = 3;
     vecinos_b[2][0] = 3;
     vecinos_b[2][1] = 1;
-    vecinos_b[3][0] = 2;
+    vecinos_b[3][0] = 1;
     vecinos_b[3][1] = 7;
-    vecinos_b[4][0] = 1;
-    vecinos_b[4][1] = 9;
 
     arr[1].valor = b;
     arr[1].vecinos = vecinos_b;
-
+    arr[1].nVecinos = 4;
     
 
     int **vecinos_c = calloc(size, sizeof(int*));
@@ -114,16 +110,14 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     vecinos_c[0][1] = 3;
     vecinos_c[1][0] = 5;
     vecinos_c[1][1] = 8;
-    vecinos_c[2][0] = 3;
+    vecinos_c[2][0] = 2;
     vecinos_c[2][1] = 2;
     vecinos_c[3][0] = 4;
     vecinos_c[3][1] = 7;
-    vecinos_c[4][0] = 2;
-    vecinos_c[4][1] = 9;
 
     arr[2].valor = c;
     arr[2].vecinos = vecinos_c;
-
+    arr[2].nVecinos = 4;
     
 
     int **vecinos_d = calloc(size, sizeof(int*));
@@ -142,16 +136,14 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     vecinos_d[0][1] = 5;
     vecinos_d[1][0] = 2;
     vecinos_d[1][1] = 7;
-    vecinos_d[2][0] = 4;
+    vecinos_d[2][0] = 5;
     vecinos_d[2][1] = 2;
     vecinos_d[3][0] = 1;
-    vecinos_d[3][1] = 1;
-    vecinos_d[4][0] = 5;
-    vecinos_d[4][1] = 8; 
+    vecinos_d[3][1] = 1; 
     
     arr[3].valor = d;
     arr[3].vecinos = vecinos_d;
-    
+    arr[3].nVecinos = 4;    
     
     int **vecinos_e = calloc(size, sizeof(int*));
 
@@ -170,12 +162,12 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     vecinos_e[1][1] = 8;
     vecinos_e[2][0] = 3;
     vecinos_e[2][1] = 2;
-    vecinos_e[3][0] = 5;
+    vecinos_e[3][0] = 1;
     vecinos_e[3][1] = 7;
-    vecinos_e[4][0] = 1;
-    vecinos_e[4][1] = 9;
+
     arr[4].valor = e;
     arr[4].vecinos = vecinos_e;
+    arr[4].nVecinos = 4;
 }
 
 void destruirGrafoDeJuguete(NodoA1 *arr, int size){

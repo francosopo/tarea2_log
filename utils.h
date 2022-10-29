@@ -17,6 +17,7 @@ typedef struct colaFib {
 
 typedef struct nodoA1{
     int valor;
+    int nVecinos;
     int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
 }NodoA1;
 
