@@ -35,12 +35,10 @@ void eliminar_de_arreglo(int *arr, int num, int len){
 
 
 //Asumimos que nodo tiene la cantidad de nodos(vértices)
-void algoritmo1(NodoA1 *nodo, int cant_nodos){
+void algoritmo1(NodoA1 *nodo, int cant_nodos, int * distancias, NodoA1 * previos){
     //inicializamos dos arreglos, que contienen las distancias y 
-    //los nodos previos(?)
-    int distancias[cant_nodos];
-    int * previos[cant_nodos];
-    int * arreglo_indices[cant_nodos];
+    //los nodos previos(?
+    int arreglo_indices[cant_nodos];
     NodoA1 aux[cant_nodos];  
     int cantidadDentrodeAux= 0;
     for(int i=0;i<cant_nodos;i++){
@@ -48,7 +46,7 @@ void algoritmo1(NodoA1 *nodo, int cant_nodos){
         distancias[i] = INT_MAX; 
         //Asignar los previos como indefinidos   
         previos[i] = NULL; 
-        aux[i] = nodo[i];    
+        aux[i] = nodo[i];  
         //Asignamos el arreglo de indices
         arreglo_indices[i]=i;
     }
@@ -60,18 +58,20 @@ void algoritmo1(NodoA1 *nodo, int cant_nodos){
     }  
     int contador = cant_nodos;
     int min = distancias[0];
-    while(contador>0){
-        NodoA1 temp_nod;
-        int distancia_minima = extractMin(distancia_minima,contador);
+    while(contador>=0){
+        int distancia_minima = extractMinNode(distancias,arreglo_indices,contador);
+        NodoA1 temp_nod= aux[distancia_minima];
         eliminar_de_arreglo(arreglo_indices,distancia_minima,contador);
         //Consigo el tamaño del arreglo de vecinos así ya que 12 serían, 8 bytes Puntero a int y 4 bytes un int
-        int tamañoDeVecinos= sizeof(aux->vecinos)/12;
+        int tamañoDeVecinos= sizeof(temp_nod.vecinos)/12;
         for(int i = 0; i<tamañoDeVecinos; i++){
-            distancias[aux->vecinos[i][0]] = aux->vecinos[i][1];
-            
+            if (distancias[temp_nod.vecinos[i][0]] > temp_nod.vecinos[i][1]+distancias[distancia_minima]){
+                distancias[temp_nod.vecinos[i][0]] = temp_nod.vecinos[i][1];
+                previos[temp_nod.vecinos[i][0]] = nodo[distancia_minima];
+            }
         }
         contador--;
-    }    
+    }
 }
 
 int main(int argc, char *argv[]){

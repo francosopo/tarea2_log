@@ -8,6 +8,8 @@ typedef struct nodo {
     struct nodo *sig;
 } Nodo;
 
+
+
 typedef struct colaFib {
     int min;
     Nodo *arr;
