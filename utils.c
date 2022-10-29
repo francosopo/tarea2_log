@@ -38,7 +38,7 @@ void destruirPrevios(NodoA1 *prev){
 }
 
 void crearGrafoDeJuguete(int size, NodoA1 *arr){
-    int a=1, b=2, c=3, d=4,e=5;
+    int a=0, b=1, c=2, d=3,e=4;
     int **vecinos_a = calloc(size, sizeof(int*));
 
     if(vecinos_a == NULL){

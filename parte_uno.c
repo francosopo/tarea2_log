@@ -94,10 +94,10 @@ int main(int argc, char *argv[]){
     NodoA1  arr[5];
     crearGrafoDeJuguete(5,arr);
 
-    test(1, arr[0].valor, 1);
-    test(2, arr[1].valor, 2);
-    test(3, arr[2].valor, 3);
-    test(4, arr[3].valor, 4); 
+    test(0, arr[0].valor, 1);
+    test(1, arr[1].valor, 2);
+    test(2, arr[2].valor, 3);
+    test(3, arr[3].valor, 4); 
     //test(5, arr[4].valor, 5);
 
     NodoA1 test_alg1[4];
