@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <limits.h>
 #include "utils.c"
 
 
@@ -12,13 +12,45 @@ void test(int expected, int got, int ntest){
         fprintf(stdout, "Test numero %i pasado\n", ntest);
     }
 }
-// arr es memoria dinamica
-int extractMin(int **arr, int size){
-    for(int i = 0; i < size; i++){
-        for(int j = 0; j < 2; j++){
-        }
+// Extraemos el minimo 
+int extractMin(int * arr,int len){
+    int min = arr[0];
+    int j;
+    for(int k = 0;k<len;k++){
+        if(arr[k]<=min)
+          j=k;
     }
-    return 1;
+    return j;
+}
+//Asumimos que nodo tiene la cantidad de nodos(vértices)
+void algoritmo1(NodoA1 *nodo, int cant_nodos){
+    //inicializamos dos arreglos, que contienen las distancias y 
+    //los nodos previos(?)
+    int distancias[cant_nodos];
+    int * previos[cant_nodos];
+
+    NodoA1 aux[cant_nodos];  
+    
+    for(int i=0;i<cant_nodos;i++){
+        //Asignamos la distancia como infinita
+        distancias[i] = INT_MAX; 
+        //Asignar los previos como indefinidos   
+        previos[i] = NULL; 
+        aux[i] = nodo[i];
+    }
+    //Asumimos que aquí está almacenado el nodo    
+    distancias[0]=0;
+    //Volver a asignar las distancias de los vecinos
+    for(int i = 0;i<sizeof(nodo->vecinos)/sizeof(nodo->vecinos[1]);i++){  
+      distancias[(nodo->vecinos)[i][0]] = nodo->vecinos[i][1];
+    }  
+    int contador = cant_nodos;
+    int min = distancias[0];
+    while(contador>0){
+        NodoA1 * temp_nod;
+        
+        contador--;
+    }    
 }
 
 int main(int argc, char *argv[]){
@@ -27,6 +59,9 @@ int main(int argc, char *argv[]){
       
     //leer el archivo de input
     //FILE *in = fopen(argv[1], "r");
+    int a[10]={1,2,3,4,5,6,7,8,4,10};
+    test(0,extractMin(a,10),6);
+
 
     NodoA1  arr[5];
     crearGrafoDeJuguete(5,arr);
