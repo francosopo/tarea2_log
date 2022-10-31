@@ -15,10 +15,10 @@ void test(int expected, int got, int ntest){
 
 // Extraemos el indice minimo 
 int extractMinNode(int * arr_dist,int * arr_index,int len){
-    int min = arr_dist[arr_index[0]];
-    int j = 0;
+    int min = arr_dist[arr_index[len-1]];
+    int j = -1;
     for(int k = 0;k<len ; k++){
-        if(arr_dist[arr_index[k]]<=min)
+        if(0<arr_dist[arr_index[k]] && arr_dist[arr_index[k]]<=min)
           j=arr_index[k];
     }
     return j;
@@ -32,7 +32,6 @@ void eliminar_de_arreglo(int *arr, int num, int len){
         }
     }
 }
-
 void eliminar_de_arreglo_nodo(NodoA1 *arr, int num, int len){
     for(int i = 0; i < len; i++){
         if(i == len - 1){
@@ -46,6 +45,7 @@ void eliminar_de_arreglo_nodo(NodoA1 *arr, int num, int len){
         }
     }
 }
+
 
 void llenar_aux(NodoA1 *aux, int size){
 

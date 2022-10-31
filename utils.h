@@ -8,15 +8,13 @@ typedef struct nodo {
     struct nodo *sig;
 } Nodo;
 
-
-
 typedef struct colaFib {
     int min;
     Nodo *arr;
 } ColaFib;
 
 typedef struct nodoA1{
-    int valor;
+    int valor; 
     int nVecinos;
     int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
 }NodoA1;
