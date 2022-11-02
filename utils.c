@@ -52,13 +52,13 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
         }
     }
 
-    vecinos_a[0][0] = 4;
-    vecinos_a[0][1] = 3;
+    vecinos_a[0][0] = 1;
+    vecinos_a[0][1] = 8;
     vecinos_a[1][0] = 2;
-    vecinos_a[1][1] = 8;
+    vecinos_a[1][1] = 2;
     vecinos_a[2][0] = 3;
-    vecinos_a[2][1] = 2;
-    vecinos_a[3][0] = 5;
+    vecinos_a[2][1] = 3;
+    vecinos_a[3][0] = 4;
     vecinos_a[3][1] = 7;
 
     arr[0].valor = a;
@@ -80,14 +80,14 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     } 
 
     
-    vecinos_b[0][0] = 4;
-    vecinos_b[0][1] = 5;
-    vecinos_b[1][0] = 5;
-    vecinos_b[1][1] = 3;
+    vecinos_b[0][0] = 0;
+    vecinos_b[0][1] = 7;
+    vecinos_b[1][0] = 2;
+    vecinos_b[1][1] = 1;
     vecinos_b[2][0] = 3;
-    vecinos_b[2][1] = 1;
-    vecinos_b[3][0] = 1;
-    vecinos_b[3][1] = 7;
+    vecinos_b[2][1] = 5;
+    vecinos_b[3][0] = 4;
+    vecinos_b[3][1] = 3;
 
     arr[1].valor = b;
     arr[1].vecinos = vecinos_b;
@@ -106,14 +106,14 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     }    
 
     
-    vecinos_c[0][0] = 1;
+    vecinos_c[0][0] = 0;
     vecinos_c[0][1] = 3;
-    vecinos_c[1][0] = 5;
-    vecinos_c[1][1] = 8;
-    vecinos_c[2][0] = 2;
-    vecinos_c[2][1] = 2;
+    vecinos_c[1][0] = 1;
+    vecinos_c[1][1] = 2;
+    vecinos_c[2][0] = 3;
+    vecinos_c[2][1] = 7;
     vecinos_c[3][0] = 4;
-    vecinos_c[3][1] = 7;
+    vecinos_c[3][1] = 8;
 
     arr[2].valor = c;
     arr[2].vecinos = vecinos_c;
@@ -132,14 +132,14 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
     } 
 
     
-    vecinos_d[0][0] = 3;
-    vecinos_d[0][1] = 5;
-    vecinos_d[1][0] = 2;
+    vecinos_d[0][0] = 0;
+    vecinos_d[0][1] = 1;
+    vecinos_d[1][0] = 1;
     vecinos_d[1][1] = 7;
-    vecinos_d[2][0] = 5;
-    vecinos_d[2][1] = 2;
-    vecinos_d[3][0] = 1;
-    vecinos_d[3][1] = 1; 
+    vecinos_d[2][0] = 2;
+    vecinos_d[2][1] = 5;
+    vecinos_d[3][0] = 4;
+    vecinos_d[3][1] = 2; 
     
     arr[3].valor = d;
     arr[3].vecinos = vecinos_d;
@@ -156,14 +156,14 @@ void crearGrafoDeJuguete(int size, NodoA1 *arr){
             fprintf(stderr,"vecinos_e[%i]", i);
         }
     } 
-    vecinos_e[0][0] = 4;
-    vecinos_e[0][1] = 3;
-    vecinos_e[1][0] = 2;
+    vecinos_e[0][0] = 0;
+    vecinos_e[0][1] = 7;
+    vecinos_e[1][0] = 1;
     vecinos_e[1][1] = 8;
-    vecinos_e[2][0] = 3;
+    vecinos_e[2][0] = 2;
     vecinos_e[2][1] = 2;
-    vecinos_e[3][0] = 1;
-    vecinos_e[3][1] = 7;
+    vecinos_e[3][0] = 3;
+    vecinos_e[3][1] = 3;
 
     arr[4].valor = e;
     arr[4].vecinos = vecinos_e;
