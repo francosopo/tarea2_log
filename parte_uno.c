@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+#include <time.h>
+#include <math.h>
+
 #include "utils.c"
 #include "pss.h"
 
@@ -46,11 +49,6 @@ void eliminar_de_arreglo_nodo(NodoA1 *arr, int num, int len){
     }
 }
 
-
-void llenar_aux(NodoA1 *aux, int size){
-
-}
-
 //actualiza la distancia desde un nodo (acumulada) hacia todos sus vecinos
 void actualizarDistancias(NodoA1 *nodos,int nodo, int *distancias, NodoA1 *prev){ 
     for(int i = 0; i < nodos[nodo].nVecinos; i++ ){
@@ -94,6 +92,70 @@ void algoritmo1(NodoA1 *nodo, int raiz, int cant_nodos, int * distancias, NodoA1
         actualizarDistancias(nodo, nodo[distancia_minima].valor,distancias, previos);
         contador--;
     }
+}
+
+int my_rand(){
+    return rand();
+}
+
+double my_rand_frac(){
+    return (double)rand() / (double) RAND_MAX;
+}
+
+double tiempo_algoritmo(NodoA1 *lista_adyacencia, int raiz, int cant_nodos, int *distancias, NodoA1 *previos){
+    clock_t begin = clock();
+        algoritmo1(lista_adyacencia, raiz, cant_nodos, distancias, previos);
+    clock_t end = clock();
+    return (double) (end - begin) / CLOCKS_PER_SEC;
+}
+
+void crearGrafo(int cant_nodos, int cant_aristas, NodoA1 *arr){
+    srand(time(NULL));
+
+    int lim_inf = 0;
+    int lim_sup = cant_nodos - 1; 
+    int cant_aristas = cant_aristas;
+
+    int *cant_vecinos_arr = calloc(cant_nodos, sizeof(int));
+
+    for (int i = 0; i < cant_nodos; i++){
+        cant_vecinos_arr[i] = my_rand_frac() * cant_nodos;
+    }
+
+    for (int i = 0; i < cant_nodos; i++){       
+        //alocando espacio para los vecinos del nodo i
+        int **vecinos = calloc(cant_vecinos_arr[i], sizeof(int*));
+        if (vecinos == NULL) perror("vecinos");
+
+        // alocando espacio para las aristas
+        for (int j = 0; j < cant_vecinos; j++){
+            vecinos[j] = calloc(2, sizeof(int));
+            if (vecinos[j] == NULL) fprintf(stderr, "vecinos %i", j);
+        }
+
+        for (int k = 0; k < cant_vecinos; k++){
+            for(int l = 0; l < 2; l++){
+                vecinos[k][l] = my_rand();
+            }
+        }
+        arr[i].valor = i;
+        arr[i].vecinos = vecinos;
+        arr[i].nVecinos = cant_vecinos;
+    }
+
+}
+
+void deleteGrafo(NodoA1 *lista, int cant_nodos){
+    for (int i = 0; i < cant_nodos; i++){
+        for(int j = 0; j < lista[i].nVecinos; j++){
+            free(lista[i].vecinos[j]);
+        }
+        free(lista[i].vecinos);
+    }
+}
+
+void prueba_de_esfuerzo(void){
+    crearGrafo((int) pow(2,14))
 }
 
 int main(int argc, char *argv[]){
