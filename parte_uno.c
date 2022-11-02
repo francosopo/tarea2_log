@@ -118,7 +118,8 @@ int main(int argc, char *argv[]){
     NodoA1 test_alg1[4];
     crearGrafoDeJuguete(4,test_alg1);
     int raiz = 0;
-    algoritmo1(test_alg1,raiz,5,d,p);
+    int nNodos = 5;
+    algoritmo1(test_alg1,raiz,nNodos,d,p);
     
     
     test(0,d[0], 7);
