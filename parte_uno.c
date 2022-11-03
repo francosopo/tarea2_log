@@ -18,10 +18,10 @@ void test(int expected, int got, int ntest){
 
 // Extraemos el indice minimo 
 int extractMinNode(int * arr_dist,int * arr_index,int len){
-    int min = arr_dist[arr_index[len-1]];
+    int min = arr_dist[arr_index[0]];
     int j = -1;
     for(int k = 0;k<len ; k++){
-        if(0<arr_dist[arr_index[k]] && arr_dist[arr_index[k]]<=min)
+        if(0<=arr_dist[arr_index[k]] && arr_dist[arr_index[k]]<=min)
           j=arr_index[k];
     }
     return j;
@@ -112,40 +112,32 @@ double tiempo_algoritmo(NodoA1 *lista_adyacencia, int raiz, int cant_nodos, int 
 void crearGrafo(int cant_nodos, int cant_aristas, NodoA1 *arr){
     srand(time(NULL));
 
-    int lim_inf = 0;
-    int lim_sup = cant_nodos - 1; 
-    int cant_aristas = cant_aristas;
-
-    int *cant_vecinos_arr = calloc(cant_nodos, sizeof(int));
-
-    for (int i = 0; i < cant_nodos; i++){
-        cant_vecinos_arr[i] = my_rand_frac() * cant_nodos;
-    }
+    int cant_aristas_por_vecino = cant_aristas/cant_nodos;
 
     for (int i = 0; i < cant_nodos; i++){       
         //alocando espacio para los vecinos del nodo i
-        int **vecinos = calloc(cant_vecinos_arr[i], sizeof(int*));
+        int **vecinos = calloc(cant_aristas_por_vecino, sizeof(int*));
         if (vecinos == NULL) perror("vecinos");
 
         // alocando espacio para las aristas
-        for (int j = 0; j < cant_vecinos; j++){
+        for (int j = 0; j < cant_aristas_por_vecino; j++){
             vecinos[j] = calloc(2, sizeof(int));
             if (vecinos[j] == NULL) fprintf(stderr, "vecinos %i", j);
         }
 
-        for (int k = 0; k < cant_vecinos; k++){
+        for (int k = 0; k < cant_aristas_por_vecino; k++){
             for(int l = 0; l < 2; l++){
-                vecinos[k][l] = my_rand();
+                vecinos[k][l] = (int) my_rand_frac() * cant_nodos;
             }
         }
         arr[i].valor = i;
         arr[i].vecinos = vecinos;
-        arr[i].nVecinos = cant_vecinos;
+        arr[i].nVecinos = cant_aristas_por_vecino;
     }
 
 }
 
-void deleteGrafo(NodoA1 *lista, int cant_nodos){
+void eliminarGrafo(NodoA1 *lista, int cant_nodos){
     for (int i = 0; i < cant_nodos; i++){
         for(int j = 0; j < lista[i].nVecinos; j++){
             free(lista[i].vecinos[j]);
@@ -154,8 +146,54 @@ void deleteGrafo(NodoA1 *lista, int cant_nodos){
     }
 }
 
+double promedio(double *stats, int cant_stats){
+    double sum = 0;
+    for(int i = 1; i < cant_stats; i++){
+        sum = sum + stats[i];
+    }
+    return sum / (double)cant_stats;
+}
+
+//cant_aristas, tiempo_segundos
+void escribir(double *para_escribir, FILE *out){
+    fprintf(out, "%0.9f, %0.9f\n", para_escribir[0], para_escribir[1]);
+}
+
+
+// el tiempo está en segundos
 void prueba_de_esfuerzo(void){
-    crearGrafo((int) pow(2,14))
+    int cant_nodos = (int) pow(2,14);
+    char filename[100];
+    snprintf(filename, 100, "alg1_aristas__tiempo_segundos_v2.csv");
+    FILE *out = fopen(filename, "w");
+    
+    for(int  j = 16; j <= 24; j++){
+        int cant_aristas = (int) pow(2,j);
+        int cant_stats = 50;
+        double stats[cant_stats];
+        
+        for (int i = 0; i < cant_stats; i++){
+            NodoA1 lista_adyacencia[cant_nodos];
+            NodoA1 *previos_arr = previos(cant_nodos);
+            int *distancias = distanciasInt(cant_nodos);
+            crearGrafo(cant_nodos, cant_aristas, lista_adyacencia);
+
+            int raiz = (int) my_rand_frac() * cant_nodos;
+
+            double delta_t = tiempo_algoritmo(lista_adyacencia,raiz, cant_nodos, distancias, previos_arr);
+
+            stats[i] = delta_t;
+            eliminarGrafo(lista_adyacencia,cant_nodos);
+            destruirPrevios(previos_arr);
+            destruirDistanciasInt(distancias);        
+           
+        }
+        double para_escribir[2];
+        para_escribir[0] = (double) cant_aristas;
+        para_escribir[1] = promedio(stats, cant_stats);
+        escribir(para_escribir, out);
+    }
+    fclose(out);
 }
 
 int main(int argc, char *argv[]){
@@ -163,7 +201,6 @@ int main(int argc, char *argv[]){
     NodoA1 *p = previos(5);
       
     //leer el archivo de input
-    //FILE *in = fopen(argv[1], "r");
     int a[10]={5,8,2,9,5,8,3,1,8,9};
     int index[10]={0,1,2,3,4,5,6,7,8,9};
     test(7,extractMinNode(a,index,10),6);
@@ -176,9 +213,10 @@ int main(int argc, char *argv[]){
     test(2, arr[2].valor, 3);
     test(3, arr[3].valor, 4); 
     //test(5, arr[4].valor, 5);
+    destruirGrafoDeJuguete(arr, 5);
 
-    NodoA1 test_alg1[4];
-    crearGrafoDeJuguete(4,test_alg1);
+    NodoA1 test_alg1[5];
+    crearGrafoDeJuguete(5, test_alg1);
     int raiz = 0;
     int nNodos = 5;
     algoritmo1(test_alg1,raiz,nNodos,d,p);
@@ -190,7 +228,10 @@ int main(int argc, char *argv[]){
     test(3,d[3], 10);
     test(5,d[4], 11);
 
-    destruirGrafoDeJuguete(arr, 5);
+    destruirGrafoDeJuguete(test_alg1,5);
+
     destruirDistanciasInt(d);
     destruirPrevios(p);
+
+    prueba_de_esfuerzo();
 }
