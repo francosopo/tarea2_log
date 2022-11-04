@@ -207,16 +207,16 @@ void print_heap(NODE *n) {
 }
 
 // Inserting nodes
-void insertion(FIB_HEAP *H, NODE *new, NodoA1 val) {
+void insertion(FIB_HEAP *H, NODE *new, NodoA1 * val, int key) {
   new = (NODE *)malloc(sizeof(NODE));
-  new->key = INT_MAX;
+  new->key = key;
   new->degree = 0;
   new->mark = false;
   new->parent = NULL;
   new->child = NULL;
   new->visited = false;
-  new->storedNode=val;
-  new->nodetag=val.valor;
+  new->storedNode = val;
+  new->nodetag=val->valor;
   new->left_sibling = new;
   new->right_sibling = new;
   if (H->min == NULL) {
