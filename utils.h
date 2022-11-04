@@ -23,6 +23,8 @@ typedef struct nodoA1{
 typedef struct _NODE {
   int key;
   int degree;
+  int nodetag;
+  NodoA1 storedNode;
   struct _NODE *left_sibling;
   struct _NODE *right_sibling;
   struct _NODE *parent;
@@ -39,7 +41,7 @@ typedef struct fibanocci_heap {
 } FIB_HEAP;
 
 FIB_HEAP *make_fib_heap();
-void insertion(FIB_HEAP *H, NODE *new, int val);
+void insertion(FIB_HEAP *H, NODE *new, NodoA1 val);
 NODE *extract_min(FIB_HEAP *H);
 void consolidate(FIB_HEAP *H);
 void fib_heap_link(FIB_HEAP *H, NODE *y, NODE *x);
