@@ -18,7 +18,13 @@ typedef struct nodoA1{
     int nVecinos;
     int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
 }NodoA1;
-
+//Nodo para el algoritmo 2
+typedef struct nodoA2{
+    int valor; 
+    int nVecinos;
+    int dist; //c/r al nodo raiz
+    int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
+}NodoA2;
 
 typedef struct _NODE {
   int key;
