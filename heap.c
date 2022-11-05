@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "utils.h"
+#include "utils.c"
 //Funcion para insertar un nodo a una cola de prioridad
 
 void decrease_key_heap(ColaHeap *heap, int index,int decrease);
@@ -50,13 +50,11 @@ void decrease_key_heap(ColaHeap *heap, int index,int decrease){
       break;  
     j=papa;
   }
-  printf("%i\n",heap->arr[0].dist);
 }
 
-int find_node_heap(ColaHeap *heap, int id, int decrease){
+void find_node_heap(ColaHeap *heap, int id, int decrease){
   for(int i = 0; i < heap -> n; i++){
     if(heap -> arr[i].valor == id){
-      int index = i;
       decrease_key_heap(heap, i, decrease); 
     }
   }
@@ -64,7 +62,7 @@ int find_node_heap(ColaHeap *heap, int id, int decrease){
 
 
 //épicoooooooooooooooooooooooooooooooo
-int main(){
+/*int main(){
     NodoA2 nodo_arr[10];
     ColaHeap q_heap = {__INT_MAX__,0,nodo_arr};
     for(int i = 1; i< 9; i++){
@@ -83,4 +81,5 @@ int main(){
     printf("dist:%i, id:%i\n",nodo_heap.dist,nodo_heap.valor);
     
 }
+*/
 

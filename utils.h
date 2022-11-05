@@ -25,12 +25,14 @@ typedef struct nodoA2{
     int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
 }NodoA2;
 
+
 typedef struct colaHeap {
     int min;
     int n;
     NodoA2 *arr;
 } ColaHeap;
 
+/*
 typedef struct _NODE {
   int key;
   int degree;
@@ -65,3 +67,4 @@ void Delete_Node(FIB_HEAP *H, int dec_key);
 int extractMinColaHeap(ColaHeap c);
 int extractMinColaFib(ColaFib c);
 int extractMinNormal(NodoA1 **arr);
+*/
