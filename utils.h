@@ -1,7 +1,4 @@
-typedef struct colaHeap {
-    int min;
-    int *arr;
-} ColaHeap;
+#include <stdbool.h>
 
 typedef struct nodo {
     int contenido;
@@ -18,6 +15,8 @@ typedef struct nodoA1{
     int nVecinos;
     int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
 }NodoA1;
+
+
 //Nodo para el algoritmo 2
 typedef struct nodoA2{
     int valor; 
@@ -25,6 +24,12 @@ typedef struct nodoA2{
     int dist; //c/r al nodo raiz
     int **vecinos; // {[v1,4], [v2,5], [v3,7], [v4,3]}
 }NodoA2;
+
+typedef struct colaHeap {
+    int min;
+    int n;
+    NodoA2 *arr;
+} ColaHeap;
 
 typedef struct _NODE {
   int key;
