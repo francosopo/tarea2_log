@@ -4,7 +4,7 @@
 #include <time.h>
 #include <math.h>
 
-#include "utils.c"
+#include "fiboHeap.h"
 
 void test(int expected, int got, int ntest){
     
@@ -15,6 +15,15 @@ void test(int expected, int got, int ntest){
     }
 }
 
+void testeo_listas_enlazadas(enlacedListNode *list){
+    enlacedListNode *next= list->next;
+    printf("distance: %i, id: %i\n",list->valor->distancia, list->valor->id);
+    if(next != NULL){
+        testeo_listas_enlazadas(next);
+    }
+}
+
+/*
 void algoritmo3(NodoA1 *nodo, int raiz, int cant_nodos, int * distancias, NodoA1 * previos){
     //inicializamos dos arreglos, que contienen las distancias y 
     //los nodos previos(?
@@ -35,7 +44,7 @@ void algoritmo3(NodoA1 *nodo, int raiz, int cant_nodos, int * distancias, NodoA1
         arreglo_indices[i]=i;
     }
     distancias[raiz]=0;
-    find_node(aux,aux->min,raiz,0);
+    find_node(aux,aux->min,raiz,0); 
     int contador = cant_nodos;
     //int min = distancias[0];
     while(contador>0){
@@ -54,17 +63,31 @@ void algoritmo3(NodoA1 *nodo, int raiz, int cant_nodos, int * distancias, NodoA1
     }
     free(aux);
 }
+*/
 
 int main(int argc, char *argv[]){
     int *d = distanciasInt(5);
     NodoA1 *p = previos(5);
-      
+    Node base= {40,40,NULL,NULL,NULL};
+    enlacedListNode * list = create_enlaced_list(&base);
+
+    Node *pruebas[5];
+    for(int i =0; i<5;i++){
+        pruebas[i]->childs=NULL;
+        pruebas[i]->distancia=i;
+        pruebas[i]->id=1;
+        pruebas[i]->father=NULL;
+        pruebas[i]->storagedNode=NULL;
+        insert_on_EL(pruebas[i],list);
+    }
+    testeo_listas_enlazadas(list);
+    destroy_enlaced_list(list);
     //leer el archivo de input
     /*
     int a[10]={5,8,2,9,5,8,3,1,8,9};
     int index[10]={0,1,2,3,4,5,6,7,8,9};
     test(7,extractMinNode(a,index,10),6);
-    */
+    
 
     NodoA1  arr[5];
     crearGrafoDeJuguete(5,arr);
@@ -95,4 +118,5 @@ int main(int argc, char *argv[]){
     destruirPrevios(p);
 
     //prueba_de_esfuerzo();
+    */
 }
