@@ -11,7 +11,7 @@ enlacedListNode * create_enlaced_list(Node *firstVal){
     return end;
 }
 
-void insert_on_EL(Nodo *newVal, enlacedListNode *list){
+void insert_on_EL(Node *newVal, enlacedListNode *list){
     enlacedListNode * newNode = malloc(sizeof(enlacedListNode));
     newNode->valor=newVal;
     newNode->next=list;
@@ -26,9 +26,11 @@ void destroy_enlaced_list(enlacedListNode *list){
     }
 }
 
+/*
 Fib_Heap create_fibonacci_heap(){
     Fib_Heap *CF = (Fib_Heap*)malloc(sizeof(Fib_Heap));
     CF->forest=create_enlaced_list(NULL)
 
 
 }
+*/

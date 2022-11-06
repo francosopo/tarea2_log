@@ -4,7 +4,7 @@
 #include <time.h>
 #include <math.h>
 
-#include "fiboHeap.h"
+#include "fiboHeap.c"
 
 void test(int expected, int got, int ntest){
     
@@ -66,8 +66,10 @@ void algoritmo3(NodoA1 *nodo, int raiz, int cant_nodos, int * distancias, NodoA1
 */
 
 int main(int argc, char *argv[]){
+    /*
     int *d = distanciasInt(5);
     NodoA1 *p = previos(5);
+    */
     Node base= {40,40,NULL,NULL,NULL};
     enlacedListNode * list = create_enlaced_list(&base);
 

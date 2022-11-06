@@ -1,6 +1,6 @@
 #include "utils.h"
-#include "utils.c"
 
+typedef struct ELN enlacedListNode;
 
 typedef struct fiboNode
 {
@@ -11,11 +11,11 @@ typedef struct fiboNode
     struct fiboNode * father;//el nodo al que este esta colgado.
 }Node;
 
-typedef struct ELN
+struct ELN
 {
     Node *valor;
     struct ELN * next;
-}enlacedListNode;
+};
 
 typedef struct fiboHeap
 {
