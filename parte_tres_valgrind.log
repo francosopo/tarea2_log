@@ -1,138 +1,202 @@
-==637== Memcheck, a memory error detector
-==637== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==637== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==637== Command: ./a.out
-==637== Parent PID: 16
-==637== 
---637-- 
---637-- Valgrind options:
---637--    -v
---637--    --tool=memcheck
---637--    --leak-check=full
---637--    --log-file=parte_tres_valgrind.log
---637-- Contents of /proc/version:
---637--   Linux version 5.10.16.3-microsoft-standard-WSL2 (oe-user@oe-host) (x86_64-msft-linux-gcc (GCC) 9.3.0, GNU ld (GNU Binutils) 2.34.0.20200220) #1 SMP Fri Apr 2 22:23:49 UTC 2021
---637-- 
---637-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
---637-- Page sizes: currently 4096, max supported 4096
---637-- Valgrind library directory: /usr/libexec/valgrind
---637-- Reading syms from /mnt/c/Users/franc/Documents/U/logaritmos/tarea2/a.out
---637-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---637--   Considering /usr/lib/debug/.build-id/61/ef896a699bb1c2e4e231642b2e1688b2f1a61e.debug ..
---637--   .. build-id is valid
---637-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---637--    object doesn't have a symbol table
---637--    object doesn't have a dynamic symbol table
---637-- Scheduler: using generic scheduler lock implementation.
---637-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==637== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-637-by-franc-on-???
-==637== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-637-by-franc-on-???
-==637== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-637-by-franc-on-???
-==637== 
-==637== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==637== don't want to do, unless you know exactly what you're doing,
-==637== or are doing some strange experiment):
-==637==   /usr/bin/vgdb --pid=637 ...command...
-==637== 
-==637== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==637==   /path/to/gdb ./a.out
-==637== and then give GDB the following command
-==637==   target remote | /usr/bin/vgdb --pid=637
-==637== --pid is optional if only one valgrind process is running
-==637== 
---637-- REDIR: 0x402aa60 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---637-- REDIR: 0x402a830 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---637-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---637--    object doesn't have a symbol table
---637-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---637--    object doesn't have a symbol table
-==637== WARNING: new redirection conflicts with existing -- ignoring it
---637--     old: 0x0402aa60 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---637--     new: 0x0402aa60 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---637-- REDIR: 0x4027240 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---637-- REDIR: 0x402afc0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---637-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---637--   Considering /usr/lib/debug/.build-id/69/389d485a9793dbe873f0ea2c93e02efaa9aa3d.debug ..
---637--   .. build-id is valid
-==637== WARNING: new redirection conflicts with existing -- ignoring it
---637--     old: 0x04906ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---637--     new: 0x04906ce0 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==637== WARNING: new redirection conflicts with existing -- ignoring it
---637--     old: 0x04906ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---637--     new: 0x04906ce0 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==637== WARNING: new redirection conflicts with existing -- ignoring it
---637--     old: 0x04906ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---637--     new: 0x04906ce0 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==637== WARNING: new redirection conflicts with existing -- ignoring it
---637--     old: 0x04906ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---637--     new: 0x04906ce0 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---637-- REDIR: 0x49097a0 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4909a60 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4909360 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4927d50 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490a750 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49265c0 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490ac90 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49263f0 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49092e0 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49099e0 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490a620 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==637== Preferring higher priority redirection:
---637--     old: 0x04a01940 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---637--     new: 0x04a01940 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---637-- REDIR: 0x4926470 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490aa60 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4926a30 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49098b0 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490aaf0 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49094a0 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49264f0 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4909250 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490abe0 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490a500 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49125f0 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490c090 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4909410 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490ab90 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4909720 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4909950 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490a9d0 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490a470 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x4909b80 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490a850 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490ab40 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x490c000 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---637-- REDIR: 0x49fe790 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---637-- REDIR: 0x4906120 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---637-- REDIR: 0x49fe580 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
---637-- REDIR: 0x4a01900 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
---637-- REDIR: 0x4906460 (libc.so.6:free) redirected to 0x484b210 (free)
-==637== 
-==637== HEAP SUMMARY:
-==637==     in use at exit: 1,080 bytes in 39 blocks
-==637==   total heap usage: 54 allocs, 15 frees, 2,472 bytes allocated
-==637== 
-==637== Searching for pointers to 39 not-freed blocks
-==637== Checked 106,752 bytes
-==637== 
-==637== 504 (360 direct, 144 indirect) bytes in 9 blocks are definitely lost in loss record 4 of 5
-==637==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==637==    by 0x109DB8: newNode (fiboHeap.c:7)
-==637==    by 0x10A031: testeoFibonaaciHeap (parte_tres.c:31)
-==637==    by 0x10A226: main (parte_tres.c:132)
-==637== 
-==637== 576 (16 direct, 560 indirect) bytes in 1 blocks are definitely lost in loss record 5 of 5
-==637==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==637==    by 0x109E17: insert_on_EL (fiboHeap.c:31)
-==637==    by 0x109EC1: insert (fiboHeap.c:59)
-==637==    by 0x10A05F: testeoFibonaaciHeap (parte_tres.c:35)
-==637==    by 0x10A226: main (parte_tres.c:132)
-==637== 
-==637== LEAK SUMMARY:
-==637==    definitely lost: 376 bytes in 10 blocks
-==637==    indirectly lost: 704 bytes in 29 blocks
-==637==      possibly lost: 0 bytes in 0 blocks
-==637==    still reachable: 0 bytes in 0 blocks
-==637==         suppressed: 0 bytes in 0 blocks
-==637== 
-==637== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==23191== Memcheck, a memory error detector
+==23191== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==23191== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==23191== Command: ./a.out
+==23191== Parent PID: 3163
+==23191== 
+--23191-- 
+--23191-- Valgrind options:
+--23191--    -v
+--23191--    --tool=memcheck
+--23191--    --leak-check=full
+--23191--    --log-file=parte_tres_valgrind.log
+--23191-- Contents of /proc/version:
+--23191--   Linux version 5.15.0-52-generic (buildd@lcy02-amd64-045) (gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #58~20.04.1-Ubuntu SMP Thu Oct 13 13:09:46 UTC 2022
+--23191-- 
+--23191-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--23191-- Page sizes: currently 4096, max supported 4096
+--23191-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--23191-- Reading syms from /home/simboraido/Desktop/Logs/tarea2_log/a.out
+--23191-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--23191--   Considering /usr/lib/debug/.build-id/45/87364908de169dec62ffa538170118c1c3a078.debug ..
+--23191--   .. build-id is valid
+--23191-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--23191--    object doesn't have a symbol table
+--23191--    object doesn't have a dynamic symbol table
+--23191-- Scheduler: using generic scheduler lock implementation.
+--23191-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==23191== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-23191-by-simboraido-on-???
+==23191== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-23191-by-simboraido-on-???
+==23191== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-23191-by-simboraido-on-???
+==23191== 
+==23191== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==23191== don't want to do, unless you know exactly what you're doing,
+==23191== or are doing some strange experiment):
+==23191==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=23191 ...command...
+==23191== 
+==23191== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==23191==   /path/to/gdb ./a.out
+==23191== and then give GDB the following command
+==23191==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=23191
+==23191== --pid is optional if only one valgrind process is running
+==23191== 
+--23191-- REDIR: 0x4022e20 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--23191-- REDIR: 0x4022bf0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--23191-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--23191--    object doesn't have a symbol table
+--23191-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--23191--    object doesn't have a symbol table
+==23191== WARNING: new redirection conflicts with existing -- ignoring it
+--23191--     old: 0x04022e20 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--23191--     new: 0x04022e20 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--23191-- REDIR: 0x401f600 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--23191-- REDIR: 0x4023380 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--23191-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--23191--   Considering /usr/lib/debug/.build-id/18/78e6b475720c7c51969e69ab2d276fae6d1dee.debug ..
+--23191--   .. build-id is valid
+--23191-- REDIR: 0x48ff480 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe780 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff7b0 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe0a0 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe7e0 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x4900c50 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x491bce0 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x491b820 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff5e0 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff410 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe710 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe150 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff540 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x491b7e0 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe670 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe230 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff800 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe1d0 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff950 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x491cf50 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x491b860 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe820 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe100 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48fe630 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x4907bb0 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff850 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff3d0 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x491b930 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48feae0 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff750 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff6f0 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x4900c90 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x48ff8a0 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--23191-- REDIR: 0x49e7500 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--23191-- REDIR: 0x48f90e0 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--23191-- REDIR: 0x49e7310 (libc.so.6:__strchrnul_avx2) redirected to 0x4843540 (strchrnul)
+--23191-- REDIR: 0x49ea6c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--23191-- REDIR: 0x48f96d0 (libc.so.6:free) redirected to 0x483c9d0 (free)
+==23191== Invalid read of size 8
+==23191==    at 0x109E05: destroy_enlaced_list (fiboHeap.c:42)
+==23191==    by 0x109F80: destroyFH (fiboHeap.c:107)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Address 0x4a55078 is 8 bytes inside a block of size 16 free'd
+==23191==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109E0D: destroy_enlaced_list (fiboHeap.c:43)
+==23191==    by 0x109F73: destroyFH (fiboHeap.c:104)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Block was alloc'd at
+==23191==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109DBF: create_enlaced_list (fiboHeap.c:25)
+==23191==    by 0x109E55: create_fibonacci_heap (fiboHeap.c:53)
+==23191==    by 0x10A081: testeoFibonaaciHeap (parte_tres.c:33)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191== 
+==23191== Invalid free() / delete / delete[] / realloc()
+==23191==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109E0D: destroy_enlaced_list (fiboHeap.c:43)
+==23191==    by 0x109F80: destroyFH (fiboHeap.c:107)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Address 0x4a55070 is 0 bytes inside a block of size 16 free'd
+==23191==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109E0D: destroy_enlaced_list (fiboHeap.c:43)
+==23191==    by 0x109F73: destroyFH (fiboHeap.c:104)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Block was alloc'd at
+==23191==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109DBF: create_enlaced_list (fiboHeap.c:25)
+==23191==    by 0x109E55: create_fibonacci_heap (fiboHeap.c:53)
+==23191==    by 0x10A081: testeoFibonaaciHeap (parte_tres.c:33)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191== 
+==23191== 
+==23191== HEAP SUMMARY:
+==23191==     in use at exit: 1,232 bytes in 39 blocks
+==23191==   total heap usage: 54 allocs, 16 frees, 2,680 bytes allocated
+==23191== 
+==23191== Searching for pointers to 39 not-freed blocks
+==23191== Checked 71,016 bytes
+==23191== 
+==23191== 576 (432 direct, 144 indirect) bytes in 9 blocks are definitely lost in loss record 4 of 5
+==23191==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109D7F: newNode (fiboHeap.c:7)
+==23191==    by 0x10A06A: testeoFibonaaciHeap (parte_tres.c:31)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191== 
+==23191== 656 (16 direct, 640 indirect) bytes in 1 blocks are definitely lost in loss record 5 of 5
+==23191==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109DE6: insert_on_EL (fiboHeap.c:32)
+==23191==    by 0x109E95: insert (fiboHeap.c:62)
+==23191==    by 0x10A098: testeoFibonaaciHeap (parte_tres.c:35)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191== 
+==23191== LEAK SUMMARY:
+==23191==    definitely lost: 448 bytes in 10 blocks
+==23191==    indirectly lost: 784 bytes in 29 blocks
+==23191==      possibly lost: 0 bytes in 0 blocks
+==23191==    still reachable: 0 bytes in 0 blocks
+==23191==         suppressed: 0 bytes in 0 blocks
+==23191== 
+==23191== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==23191== 
+==23191== 1 errors in context 1 of 4:
+==23191== Invalid free() / delete / delete[] / realloc()
+==23191==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109E0D: destroy_enlaced_list (fiboHeap.c:43)
+==23191==    by 0x109F80: destroyFH (fiboHeap.c:107)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Address 0x4a55070 is 0 bytes inside a block of size 16 free'd
+==23191==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109E0D: destroy_enlaced_list (fiboHeap.c:43)
+==23191==    by 0x109F73: destroyFH (fiboHeap.c:104)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Block was alloc'd at
+==23191==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109DBF: create_enlaced_list (fiboHeap.c:25)
+==23191==    by 0x109E55: create_fibonacci_heap (fiboHeap.c:53)
+==23191==    by 0x10A081: testeoFibonaaciHeap (parte_tres.c:33)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191== 
+==23191== 
+==23191== 1 errors in context 2 of 4:
+==23191== Invalid read of size 8
+==23191==    at 0x109E05: destroy_enlaced_list (fiboHeap.c:42)
+==23191==    by 0x109F80: destroyFH (fiboHeap.c:107)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Address 0x4a55078 is 8 bytes inside a block of size 16 free'd
+==23191==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109E0D: destroy_enlaced_list (fiboHeap.c:43)
+==23191==    by 0x109F73: destroyFH (fiboHeap.c:104)
+==23191==    by 0x10A0EB: testeoFibonaaciHeap (parte_tres.c:50)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191==  Block was alloc'd at
+==23191==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23191==    by 0x109DBF: create_enlaced_list (fiboHeap.c:25)
+==23191==    by 0x109E55: create_fibonacci_heap (fiboHeap.c:53)
+==23191==    by 0x10A081: testeoFibonaaciHeap (parte_tres.c:33)
+==23191==    by 0x10A260: main (parte_tres.c:132)
+==23191== 
+==23191== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
