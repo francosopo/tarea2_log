@@ -135,10 +135,10 @@ void prueba_de_esfuerzo(void){
     snprintf(filename, 100, "alg2_aristas__tiempo_segundos_v2.csv");
 
     FILE *out = fopen(filename, "w");
-    fprintf(out,"cantidad_de_aristas,tiempo_en_segundos");
+    fprintf(out,"naristas,tiempo_s\n");
     for(int  j = 16; j <= 24; j++){
         int cant_aristas = (int) pow(2,j);
-        int cant_stats = 10;
+        int cant_stats = 50;
         double stats[cant_stats];
         
         for (int i = 0; i < cant_stats; i++){
@@ -161,6 +161,7 @@ void prueba_de_esfuerzo(void){
         para_escribir[0] = (double) cant_aristas;
         para_escribir[1] = promedio(stats, cant_stats);
         escribir(para_escribir, out);
+        printf("j: %i,%0.9f\n", j, para_escribir[1]);
     }
     fclose(out);
 }
