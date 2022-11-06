@@ -23,6 +23,34 @@ void testeo_listas_enlazadas(enlacedListNode *list){
     }
 }
 
+void testeoFibonaaciHeap(void){
+    Node *nodes[10];
+    nodoA3 *nodesA3[10];
+    for(int i = 0; i < 10; i++){
+        nodesA3[i] = newNodoA3(i,0,NULL);
+        nodes[i] = newNode(i,i,nodesA3[i]);
+    }
+    Fib_Heap *fib_heap = create_fibonacci_heap(nodes[0]);
+    for(int i = 0; i < 10; i++){
+        insert(fib_heap, nodesA3[i],i);
+    }
+    int i = 9;
+    printf("Testing insert on fib heap\n");
+    enlacedListNode **l = &fib_heap->forest;
+    while(l!= NULL && i>=0){
+        test(i, fib_heap->forest->valor->distancia, i);
+        i = i - 1;
+        *l = (*l)-> next;
+    }
+    /*
+    for(int i = 0; i < 10; i++){
+        printf("Testeo fibonacci heap\n");
+        test(9-i, get(fib_heap)->valor, i);
+    }*/
+    destroyFH(fib_heap);
+    
+}
+
 /*
 void algoritmo3(NodoA1 *nodo, int raiz, int cant_nodos, int * distancias, NodoA1 * previos){
     //inicializamos dos arreglos, que contienen las distancias y 
@@ -70,20 +98,38 @@ int main(int argc, char *argv[]){
     int *d = distanciasInt(5);
     NodoA1 *p = previos(5);
     */
-    Node base= {40,40,NULL,NULL,NULL};
+    Node base= {40,40,0,NULL,NULL,NULL};
     enlacedListNode * list = create_enlaced_list(&base);
 
-    Node *pruebas[5];
+    Node pruebas[5];
     for(int i =0; i<5;i++){
-        pruebas[i]->childs=NULL;
-        pruebas[i]->distancia=i;
-        pruebas[i]->id=1;
-        pruebas[i]->father=NULL;
-        pruebas[i]->storagedNode=NULL;
-        insert_on_EL(pruebas[i],list);
+        pruebas[i].childs=NULL;
+        pruebas[i].distancia=i;
+        pruebas[i].id=1;
+        pruebas[i].father=NULL;
+        pruebas[i].storagedNode=NULL;
+        insert_on_EL(&pruebas[i],&list);
     }
     testeo_listas_enlazadas(list);
     destroy_enlaced_list(list);
+    
+    nodoA3 pruebas_node[5];
+    Node *nodes[5];
+    for(int i =0; i<5;i++){
+        pruebas_node[i].valor = i;
+        pruebas_node[i].nVecinos = 0;
+        pruebas_node[i].vecinos = NULL;
+        nodes[i] = newNode(i,i,&pruebas_node[i]); 
+    }
+    for(int i =0; i<5;i++){
+        test(i, nodes[i] ->distancia, i);
+        test(i, nodes[i] -> id, i);
+    }
+    for(int i =0; i<5;i++){
+        destroyNode(nodes[i]);
+    }
+    
+    testeoFibonaaciHeap();    
     //leer el archivo de input
     /*
     int a[10]={5,8,2,9,5,8,3,1,8,9};

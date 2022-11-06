@@ -333,3 +333,15 @@ void destruirGrafoDeJugueteHeap(NodoA2 *arr, int size){
         free(arr[i].vecinos);
     }
 }
+
+nodoA3 *newNodoA3(int valor, int nVecinos, int **vecinos){
+    nodoA3 *n = malloc(sizeof(nodoA3));
+    n->valor = valor;
+    n -> nVecinos = nVecinos;
+    n -> vecinos = vecinos;
+    return n;
+}
+
+void destroyNodeA3(nodoA3 *nodo){
+    free(nodo);
+}
