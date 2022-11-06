@@ -17,11 +17,12 @@ struct ELN
 {
     Node *valor;
     struct ELN * next;
-    
+    struct ELN * prev;   
 };
 
 typedef struct fiboHeap
 {
+    int N; //cantidad total de nodos del FiboHeap
     enlacedListNode * lastElement; //ultimo elemento del bosque de fibbonacci
     enlacedListNode * forest; //bosque de fibonnacci, lista de arboles de fibbonacci.
     Node * min; //puntero menor nodo del bosque.

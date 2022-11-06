@@ -24,6 +24,7 @@ void destroyNode(Node *n){
 enlacedListNode * create_enlaced_list(Node *firstVal){
     enlacedListNode * end = malloc(sizeof(enlacedListNode));
     end->next=NULL;
+    end->prev=NULL;
     end->valor=firstVal;
     return end;
 }
@@ -32,6 +33,7 @@ void insert_on_EL(Node *newVal, enlacedListNode **list){
     enlacedListNode * newNode = malloc(sizeof(enlacedListNode));
     newNode->valor=newVal;
     newNode->next=*list;
+    (*list)->prev=newNode;
     *list=newNode;
 }
 
@@ -39,9 +41,11 @@ void destroy_enlaced_list(enlacedListNode *list){
     if(list == NULL){
         return ;
     }else{
-        enlacedListNode * next= list->next;
+        //enlacedListNode * next= list->next;
+        //Node * valor = list->valor;
+        destroyNode(list->valor);
+        destroy_enlaced_list(list->next);
         free(list);
-        destroy_enlaced_list(next);
     }
     /*    if (next != NULL){
         destroy_enlaced_list(next);
@@ -68,16 +72,75 @@ nodoA3 *get(Fib_Heap *CF)
 {
     nodoA3 *ret = CF->min->storagedNode;
     enlacedListNode *c = CF->min->childs;
+    //añado los hijos del nodo eliminado a la lista enlazada
     while(c != NULL){
         Node *n = c ->valor;
         n->father = NULL;
         insert(CF,n->storagedNode,n->distancia);
+        n->storagedNode=NULL;
         destroyNode(n);
         c = c->next;
     }
-    /*
-    merge(CF);
-    */
+    enlacedListNode *toDelete = CF->min->listPosition;
+    enlacedListNode *prev= toDelete->prev;
+    enlacedListNode *next= toDelete->next;
+    prev->next=next;
+    next->prev=prev;
+    toDelete->next=NULL;
+    toDelete->prev=NULL;
+    destroy_enlaced_list(toDelete);
+    int k= (int)log2(CF->N);
+    Node * A[k];
+    for(int i =0; i<k; i++){
+        A[i]=NULL;
+    }
+    enlacedListNode *forest= CF->forest;
+    while(forest!=NULL){
+        Node* n= forest->valor;
+        int valor = n->nNodos;
+        int k= ((int)floor(log2(valor))) +1;
+        if(A[k]==NULL){
+            A[k]=n;
+        }
+        else{
+            if(A[k]->distancia > n->distancia){
+                insert_on_EL(A[k],&(n->childs));
+                n->nNodos=  n->nNodos+ A[k]->nNodos;
+                A[k+1]=n;
+                A[k]=NULL;
+            }
+            else{
+                insert_on_EL(n,&A[k]);
+                A[k]->nNodos=  n->nNodos+ A[k]->nNodos;
+                A[k+1]= A[k];
+                A[k]=NULL;
+            }
+        }
+        forest=forest->next;
+    }
+
+    int j=k;
+    while(A[j]==NULL){
+        j--;
+    }
+    enlacedListNode *newForest= create_enlaced_list(A[j]); 
+    for(j;j>=0;j--){
+        if(A[j]!=NULL){
+            insert_on_EL(A[j],&newForest);
+        }
+    }
+    CF->forest=newForest;
+    enlacedListNode * forestReference=CF->forest;
+    CF->min= forestReference ->valor;
+    forestReference=forestReference->next;
+    //consigo un nuevo minimo
+    while(forestReference!=NULL){
+        if(CF->min->distancia > forestReference->valor->distancia)
+        {
+            CF->min=newForest->valor;
+        }
+    }
+
     return ret;
 }
 
@@ -91,24 +154,42 @@ void merge(Fib_Heap *CF1, Fib_Heap *CF2){
     CF2->min=NULL;
     CF2->lastElement=NULL;
     CF2->forest=NULL;
-    destroy_enlaced_list(CF2);
+    destroyFH(CF2);
 }
 
+//busca un nodo entre todos los hijos de un arbol
+Node *searchNode(Node *node, int llave){
+    if(node->id==llave)
+    {
+        return node;
+    }
+    else
+    {
+        Node* result= NULL;
+        if(node->childs!= NULL)
+        {
+            enlacedListNode *childs= node->childs;
+            while(result==NULL && childs!=NULL){
+                result=searchNode(childs->valor,llave);
+                childs = childs->next;
+            }
+        }
+        return result;
+    }
+}
+
+//Para este caso en especifico el DecreaseKey es buscar un nodo entre los n disponibles, por lo que encontrarlo
+//es orden N, numero de nodos, dado que la heap se ordena por distancia pero el cambio se hace en base a la id 
+//las cuales no se ordenan en un orden especifico.
 void DecreaseKey(Fib_Heap *CF, int llave, int nueva_dist)
 {
-
+    
 }
 void destroyFH(Fib_Heap *CF)
 {
-    if(CF->forest!=NULL){
-        destroy_enlaced_list(CF->forest);
-    }
-    if(CF->lastElement!=NULL){
-        destroy_enlaced_list(CF->lastElement);
-    }
-    if(CF->min!=NULL){
-        destroyNode(CF->min);
-    }
+    destroy_enlaced_list(CF->forest);
+    //destroy_enlaced_list(CF->lastElement);
+    //destroyNode(CF->min);
     free(CF);
 }
 

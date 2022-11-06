@@ -23,6 +23,21 @@ void testeo_listas_enlazadas(enlacedListNode *list){
     }
 }
 
+void testeoSearchnode(void){
+    printf("-------Testeo Search Node -----\n");
+    Node *M= newNode(30,30,NULL);
+    Node *ch1= newNode(1,1,NULL);
+    Node *ch2= newNode(2,2,NULL);
+    Node *ch3= newNode(3,3,NULL);
+    insert_on_EL(ch1,&(M->childs));
+    insert_on_EL(ch2,&(M->childs));
+    insert_on_EL(ch3,&(M->childs));
+
+    Node *n= searchNode(M,1);
+    test(1,n->id,32);
+    destroyNode(M);
+}
+
 void testeoFibonaaciHeap(void){
     Node *nodes[10];
     nodoA3 *nodesA3[10];
@@ -105,7 +120,7 @@ int main(int argc, char *argv[]){
     for(int i =0; i<5;i++){
         pruebas[i].childs=NULL;
         pruebas[i].distancia=i;
-        pruebas[i].id=1;
+        pruebas[i].id=i;
         pruebas[i].father=NULL;
         pruebas[i].storagedNode=NULL;
         insert_on_EL(&pruebas[i],&list);
@@ -130,6 +145,7 @@ int main(int argc, char *argv[]){
     }
     
     testeoFibonaaciHeap();    
+    testeoSearchnode();
     //leer el archivo de input
     /*
     int a[10]={5,8,2,9,5,8,3,1,8,9};
