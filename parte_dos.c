@@ -24,7 +24,7 @@ void algoritmo2(NodoA2 *nodo, int raiz, int cant_nodos, int * distancias, NodoA2
     //los nodos previos, y además la cola de heap  
     NodoA2 nodo_null = {-1,-1,-1,NULL};
     NodoA2 nodo_arr[cant_nodos];
-    ColaHeap heap_q = {__INT_MAX__,0,nodo_arr};
+    ColaHeap heap_q = {INT_MAX, 0, nodo_arr};
 
     nodo[raiz].dist = 0;
     for(int i=0;i<cant_nodos;i++){
@@ -139,10 +139,21 @@ void prueba_de_esfuerzo(void){
     for(int  j = 16; j <= 24; j++){
         int cant_aristas = (int) pow(2,j);
         int cant_stats = 50;
-        double stats[cant_stats];
+        double *stats = calloc(cant_stats, sizeof(double));
+        if(stats == NULL){
+            perror("stats: calloc");
+            fclose(out);
+            exit(-1);
+        }
         
         for (int i = 0; i < cant_stats; i++){
-            NodoA2 lista_adyacencia[cant_nodos];
+            NodoA2 *lista_adyacencia = calloc(cant_nodos, sizeof(NodoA2));
+            if(lista_adyacencia == NULL){
+                perror("lista_adyacencia");
+                fclose(out);
+                free(stats);
+                exit(-1);
+            }
             NodoA2 *previos_arr = previos_heap(cant_nodos);
             int *distancias = distanciasInt(cant_nodos);
             crearGrafo(cant_nodos, cant_aristas, lista_adyacencia);
@@ -155,13 +166,14 @@ void prueba_de_esfuerzo(void){
             eliminarGrafoHeap(lista_adyacencia,cant_nodos);
             destruirPrevios_heap(previos_arr);
             destruirDistanciasInt(distancias);        
-           
+            free(lista_adyacencia);
         }
         double para_escribir[2];
         para_escribir[0] = (double) cant_aristas;
         para_escribir[1] = promedio(stats, cant_stats);
         escribir(para_escribir, out);
         printf("j: %i,%0.9f\n", j, para_escribir[1]);
+        free(stats);
     }
     fclose(out);
 }
