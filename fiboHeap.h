@@ -8,6 +8,7 @@ typedef struct fiboNode
     int id; // el identificador del nodo, se utilizará para reemplazar el coso
     int nNodos; // la cantidad de nodos de este arbol
     nodoA3 * storagedNode;
+    enlacedListNode * listPosition; //nodo del bosque de fibonacci al que esta unido
     enlacedListNode * childs;//lista de los nodos colgados a este
     struct fiboNode * father;//el nodo al que este esta colgado.
 }Node;
@@ -16,10 +17,12 @@ struct ELN
 {
     Node *valor;
     struct ELN * next;
+    
 };
 
 typedef struct fiboHeap
 {
+    enlacedListNode * lastElement; //ultimo elemento del bosque de fibbonacci
     enlacedListNode * forest; //bosque de fibonnacci, lista de arboles de fibbonacci.
     Node * min; //puntero menor nodo del bosque.
 }Fib_Heap;
@@ -35,6 +38,6 @@ void destroy_enlaced_list(enlacedListNode *list);
 Fib_Heap *create_fibonacci_heap(Node *node);
 void insert(Fib_Heap *CF, nodoA3 *nuevo, int dist);
 nodoA3 *get(Fib_Heap *CF);
-void merge(Fib_Heap *CF);
+void merge(Fib_Heap *CF1, Fib_Heap *CF2);
 void DecreaseKey(Fib_Heap *CF, int llave, int nueva_dist);
 void destroyFH(Fib_Heap *CF);

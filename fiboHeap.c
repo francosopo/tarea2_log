@@ -11,6 +11,7 @@ Node *newNode(int distancia, int id, nodoA3 *nodo){
     n -> nNodos = 0;
     n -> childs = NULL;
     n -> father = NULL;
+    n ->listPosition=NULL;
     return n;
 }
 
@@ -49,7 +50,9 @@ void destroy_enlaced_list(enlacedListNode *list){
 
 Fib_Heap *create_fibonacci_heap(Node *node){
     Fib_Heap *CF = (Fib_Heap*)malloc(sizeof(Fib_Heap));
-    CF->forest=create_enlaced_list(node);
+    enlacedListNode * firstElement = create_enlaced_list(node);
+    CF->forest=firstElement;
+    CF->lastElement=firstElement;
     CF->min = CF->forest->valor;
     return CF;
 }
@@ -72,22 +75,40 @@ nodoA3 *get(Fib_Heap *CF)
         destroyNode(n);
         c = c->next;
     }
+    /*
     merge(CF);
+    */
     return ret;
 }
 
-void merge(Fib_Heap *CF){
-    enlacedListNode *list = CF->forest;
-
+void merge(Fib_Heap *CF1, Fib_Heap *CF2){
+    CF1->lastElement->next= CF2->forest;
+    CF1->lastElement= CF2->lastElement;
+    if(CF2->min->distancia < CF1 -> min -> distancia)
+    {
+        CF1->min = CF2->min;
+    }
+    CF2->min=NULL;
+    CF2->lastElement=NULL;
+    CF2->forest=NULL;
+    destroy_enlaced_list(CF2);
 }
+
 void DecreaseKey(Fib_Heap *CF, int llave, int nueva_dist)
 {
 
 }
 void destroyFH(Fib_Heap *CF)
 {
-    destroy_enlaced_list(CF->forest);
-    destroyNode(CF->min);
+    if(CF->forest!=NULL){
+        destroy_enlaced_list(CF->forest);
+    }
+    if(CF->lastElement!=NULL){
+        destroy_enlaced_list(CF->lastElement);
+    }
+    if(CF->min!=NULL){
+        destroyNode(CF->min);
+    }
     free(CF);
 }
 
