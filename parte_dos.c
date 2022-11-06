@@ -24,7 +24,7 @@ void algoritmo2(NodoA2 *nodo, int raiz, int cant_nodos, int * distancias, NodoA2
     //los nodos previos, y además la cola de heap  
     NodoA2 nodo_null = {-1,-1,-1,NULL};
     NodoA2 nodo_arr[cant_nodos];
-    ColaHeap heap_q = {INT_MAX,0,nodo_arr};
+    ColaHeap heap_q = {INT_MAX, 0, nodo_arr};
 
     nodo[raiz].dist = 0;
     for(int i=0;i<cant_nodos;i++){
