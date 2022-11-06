@@ -110,7 +110,8 @@ nodoA3 *get(Fib_Heap *CF)
                 A[k]=NULL;
             }
             else{
-                insert_on_EL(n,&A[k]);
+                enlacedListNode * a = create_enlaced_list(A[k]);
+                insert_on_EL(n,&a);
                 A[k]->nNodos=  n->nNodos+ A[k]->nNodos;
                 A[k+1]= A[k];
                 A[k]=NULL;
@@ -124,9 +125,9 @@ nodoA3 *get(Fib_Heap *CF)
         j--;
     }
     enlacedListNode *newForest= create_enlaced_list(A[j]); 
-    for(j;j>=0;j--){
-        if(A[j]!=NULL){
-            insert_on_EL(A[j],&newForest);
+    for(int i=j;i>=0;i--){
+        if(A[i]!=NULL){
+            insert_on_EL(A[i],&newForest);
         }
     }
     CF->forest=newForest;
@@ -140,7 +141,6 @@ nodoA3 *get(Fib_Heap *CF)
             CF->min=newForest->valor;
         }
     }
-
     return ret;
 }
 
@@ -183,8 +183,36 @@ Node *searchNode(Node *node, int llave){
 //las cuales no se ordenan en un orden especifico.
 void DecreaseKey(Fib_Heap *CF, int llave, int nueva_dist)
 {
-    
+    Node * toModify= NULL;
+    enlacedListNode *forest= CF->forest;
+    while (toModify==NULL && forest!=NULL)
+    {
+        toModify = searchNode(forest->valor,llave);
+    }
+    if(toModify == NULL){
+        return ;
+    }
+    else{
+        toModify->distancia=nueva_dist;
+        while((toModify->distancia < toModify->father->distancia) && toModify->father!=NULL){
+            Node* exfather= toModify->father;
+            int distancia= exfather->distancia;
+            int id = exfather -> id;
+            nodoA3 * storage= exfather->storagedNode;
+            exfather->id=toModify->id;
+            exfather->distancia=toModify->distancia;
+            exfather->storagedNode= toModify->storagedNode;
+            toModify->storagedNode= storage;
+            toModify->id=id;
+            toModify->distancia=distancia;
+            toModify= toModify->father;
+        }
+    }
+    if(CF->min->distancia > toModify->distancia){
+        CF->min=toModify;
+    }
 }
+
 void destroyFH(Fib_Heap *CF)
 {
     destroy_enlaced_list(CF->forest);
