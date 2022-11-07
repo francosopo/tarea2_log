@@ -16,8 +16,8 @@ typedef struct fiboNode
 struct ELN
 {
     Node *valor;
-    struct ELN * next;
-    struct ELN * prev;   
+    struct ELN * prev; 
+    struct ELN * next;  
 };
 
 typedef struct fiboHeap

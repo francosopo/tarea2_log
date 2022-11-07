@@ -31,9 +31,15 @@ enlacedListNode * create_enlaced_list(Node *firstVal){
 
 void insert_on_EL(Node *newVal, enlacedListNode **list){
     enlacedListNode * newNode = malloc(sizeof(enlacedListNode));
+    if(newNode==NULL){
+        perror("allocation failed");
+        exit(-1);
+    }
     newNode->valor=newVal;
     newNode->next=*list;
+    newNode->prev=NULL;
     (*list)->prev=newNode;
+    printf("previus ID: %i\n",(*list)->prev->valor->id);
     *list=newNode;
 }
 
